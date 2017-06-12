@@ -10,7 +10,7 @@ Wow ... this porting has just beend finished. It probably has bugs yet, but it w
 
 It is a porting of Cortex M0 Real Time Operating System (M0S) of Dumitru Stama, winner of hack a day 1kb 2017 contest (http://hackaday.com/2017/01/13/1-kb-challenge-and-the-winners-are/). Original version is for NUCLEO-F072RB and is available at https://github.com/dumitru-stama/M0S .
 
-This port is for Arm Cortex M0 Design Kit running under Basys 3.
+This port is for Arm Cortex M0 Design Kit running under Xilinx FPGA of Digilent Basys 3 board.
 
 Synthesis takes a lot of time because of the logic syntehsided 4kb rom/ram .
 
