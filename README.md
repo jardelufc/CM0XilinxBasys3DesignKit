@@ -32,8 +32,11 @@ This porting has been tested and used under RWindoW$
 
 
 0X00000E01-0x00001000 (Heap mem)
+
 0x00000C01-0x00000E00 (128x4 task stacks)
+
 0x00000801-0x00000C00 (os mem (512), os stack (256), idle task stack(256) )
+
 0x00000000-0x00000800 (Text of M0S and Tasks)
 
 
