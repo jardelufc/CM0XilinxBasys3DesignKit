@@ -1,5 +1,10 @@
 # CM0XilinxBasys3DesignKit
 
+Jesus Cristo é O Senhor !
+
+Jesus Christ is The Lord !
+
+Wow ... this porting has just beend finished. It probably has bugs yet ! 
 
 It is a porting of Cortex M0 Real Time Operating System (M0S) of Dumitru Stama, winner of hack a day 1kb 2017 contest (http://hackaday.com/2017/01/13/1-kb-challenge-and-the-winners-are/). Original version is for NUCLEO-F072RB and is available at https://github.com/dumitru-stama/M0S .
 
