@@ -1,0 +1,6 @@
+verilog xil_defaultlib "../../../../ARMSOC_1.srcs/sources_1/ip/ClockDiv_1/ClockDiv_clk_wiz.v" --include "../../../ipstatic"
+verilog xil_defaultlib "../../../../ARMSOC_1.srcs/sources_1/ip/ClockDiv_1/ClockDiv.v" --include "../../../ipstatic"
+
+verilog xil_defaultlib "glbl.v"
+
+nosort
