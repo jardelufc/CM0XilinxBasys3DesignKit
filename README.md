@@ -24,15 +24,15 @@ This porting has been tested and used under RWindoW$
 
 3. Xilinx Install Vivado
 
-4. Enter in Software\M0s folder and run build
+4. run Command Prompt, enter in Software\M0s folder and run build .
 
 5. Open Vivado Project Under Xilinx folder, run Generate bitstream and download it to you Basys 3 board.
 
 
 
 
-          -0x00001000 (Heap mem)
-0x00000C01-           (128x4 task stacks)
+0X00000E01-0x00001000 (Heap mem)
+0x00000C01-0x00000E00 (128x4 task stacks)
 0x00000801-0x00000C00 (os mem (512), os stack (256), idle task stack(256) )
 0x00000000-0x00000800 (Text of M0S and Tasks)
 
