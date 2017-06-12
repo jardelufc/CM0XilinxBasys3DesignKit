@@ -1,0 +1,1 @@
+Cortex-M0 DesignStart IP – Go to the ARM University page (http://www.arm.com/support/university/index.php), register for an account , and request access to the Cortex-M0 DesignStart IP.
