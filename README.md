@@ -10,13 +10,24 @@ Synthesis takes a lot of time because of the logic syntehsided 4kb rom/ram .
 
 This porting has been tested and used under RWindoW$
 
-1. Download this repository and put cortexm0ds_logic.v in \CM0XilinxBasys3DesignKit-master\EXAMPLE_SoC\ARMSOC_1\Xilinx\ARMSOC_1.srcs\sources_1\imports\CM0DS-DesignKit\AHB_Peripherals\CM0DS_AHBL
+1. Download this repository and
+2. cortexm0ds_logic.v (https://github.com/CarlosDomingues/TEAM-SUCCESS-NANO/blob/master/cortexm0ds_logic.v) in \CM0XilinxBasys3DesignKit-master\EXAMPLE_SoC\ARMSOC_1\Xilinx\ARMSOC_1.srcs\sources_1\imports\CM0DS-DesignKit\AHB_Peripherals\CM0DS_AHBL
 
-2. Install arm-non-eabi and put it in path
+2. Install arm-non-eabi (https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads) and put it in path
 
 3. Xilinx Install Vivado
 
-4. Enter in Software\M0s and run build
+4. Enter in Software\M0s folder and run build
+
+5. Open Vivado Project Under Xilinx folder, run Generate bitstream and download it to you Basys 3 board.
+
+
+
+
+          -0x00001000 (Heap mem)
+0x00000C01-           (128x4 task stacks)
+0x00000801-0x00000C00 (os mem (512), os stack (256), idle task stack(256) )
+0x00000000-0x00000800 (Text of M0S and Tasks)
 
 
 
