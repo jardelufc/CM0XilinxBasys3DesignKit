@@ -1,0 +1,136 @@
+NET "brd_clk"  LOC = "B8"  ; 
+
+NET "EppAstb"  LOC = "V14"  ; 
+NET "EppDB<0>"  LOC = "R14"  ;
+NET "EppDB<1>"  LOC = "R13"  ; 
+NET "EppDB<2>"  LOC = "P13"  ; 
+NET "EppDB<3>"  LOC = "T12"  ; 
+NET "EppDB<4>"  LOC = "N11"  ; 
+NET "EppDB<5>"  LOC = "R11"  ; 
+NET "EppDB<6>"  LOC = "P10"  ; 
+NET "EppDB<7>"  LOC = "R10"  ; 
+
+NET "EppDstb"  LOC = "U14"  ;
+NET "EppWait"  LOC = "N9"  ; 
+NET "EppWr"  LOC = "V16"  ; 
+NET "FlashCS"  LOC = "R5"  ;
+NET "FlashRp"  LOC = "T5"  ; 
+NET "FlashStSts"  LOC = "D3"  ; 
+
+NET "MemAdr<1>"  LOC = "J1"  ; 
+NET "MemAdr<2>"  LOC = "J2"  ; 
+NET "MemAdr<3>"  LOC = "H4"  ; 
+NET "MemAdr<4>"  LOC = "H1"  ; 
+NET "MemAdr<5>"  LOC = "H2"  ; 
+NET "MemAdr<6>"  LOC = "J5"  ; 
+NET "MemAdr<7>"  LOC = "H3"  ; 
+NET "MemAdr<8>"  LOC = "H6"  ; 
+NET "MemAdr<9>"  LOC = "F1"  ; 
+NET "MemAdr<10>"  LOC = "G3"  ; 
+NET "MemAdr<11>"  LOC = "G6"  ; 
+NET "MemAdr<12>"  LOC = "G5"  ; 
+NET "MemAdr<13>"  LOC = "G4"  ; 
+NET "MemAdr<14>"  LOC = "F2"  ; 
+NET "MemAdr<15>"  LOC = "E1"  ; 
+NET "MemAdr<16>"  LOC = "M5"  ; 
+NET "MemAdr<17>"  LOC = "E2"  ; 
+NET "MemAdr<18>"  LOC = "C2"  ; 
+NET "MemAdr<19>"  LOC = "C1"  ; 
+NET "MemAdr<20>"  LOC = "D2"  ; 
+NET "MemAdr<21>"  LOC = "K3"  ; 
+NET "MemAdr<22>"  LOC = "D1"  ; 
+NET "MemAdr<23>"  LOC = "K6"  ; 
+
+NET "MemDB<0>"  LOC = "L1"  ; 
+NET "MemDB<1>"  LOC = "L4"  ; 
+NET "MemDB<2>"  LOC = "L6"  ; 
+NET "MemDB<3>"  LOC = "M4"  ; 
+NET "MemDB<4>"  LOC = "N5"  ; 
+NET "MemDB<5>"  LOC = "P1"  ; 
+NET "MemDB<6>"  LOC = "P2"  ; 
+NET "MemDB<7>"  LOC = "R2"  ;
+NET "MemDB<8>"  LOC = "L3"  ; 
+NET "MemDB<9>"  LOC = "L5"  ; 
+NET "MemDB<10>"  LOC = "M3"  ; 
+NET "MemDB<11>"  LOC = "M6"  ; 
+NET "MemDB<12>"  LOC = "L2"  ; 
+NET "MemDB<13>"  LOC = "N4"  ; 
+NET "MemDB<14>"  LOC = "R3"  ; 
+NET "MemDB<15>"  LOC = "T1"  ; 
+
+NET "MemOe"  LOC = "T2"  ; 
+NET "MemWr"  LOC = "N7"  ; 
+
+NET "RamAdv"  LOC = "J4"  ; 
+NET "RamClk"  LOC = "H5"  ; 
+NET "RamCre"  LOC = "P7"  ; 
+NET "RamCS"  LOC = "R6"  ; 
+NET "RamLB"  LOC = "K5"  ; 
+NET "RamUB"  LOC = "K4"  ; 
+NET "RamWait"  LOC = "F5"  ; 
+
+# Leds
+NET "led<0>"  LOC = "J14"; 
+NET "led<1>"  LOC = "J15"; 
+NET "led<2>"  LOC = "K15";  
+NET "led<3>"  LOC = "K14"; 
+NET "led<4>" LOC = "E16"; 
+NET "led<5>" LOC = "P16"; 
+NET "led<6>" LOC = "E4";  
+NET "led<7>" LOC = "P4";  
+
+# Switches
+NET "EppRst" LOC = "G18"; 
+#NET "sw<0>" LOC = "G18"; 
+NET "sw<1>" LOC = "H18"; 
+NET "sw<2>" LOC = "K18"; 
+NET "sw<3>" LOC = "K17"; 
+NET "sw<4>" LOC = "L14"; 
+NET "sw<5>" LOC = "L13"; 
+NET "sw<6>" LOC = "N17"; 
+NET "sw<7>" LOC = "R17"; 
+
+# Buttons
+#NET "btn" LOC = "B18"; 
+NET "btn<0>" LOC = "B18"; 
+NET "btn<1>" LOC = "D18"; 
+NET "btn<2>" LOC = "E18"; 
+NET "btn<3>" LOC = "H13"; 
+
+# 7 segment display
+NET "seg<0>" LOC = "L18"; 
+NET "seg<1>" LOC = "F18"; 
+NET "seg<2>" LOC = "D17"; 
+NET "seg<3>" LOC = "D16"; 
+NET "seg<4>" LOC = "G14"; 
+NET "seg<5>" LOC = "J17"; 
+NET "seg<6>" LOC = "H14"; 
+NET "dp"     LOC = "C17"; 
+
+NET "an<0>" LOC = "F17"; 
+NET "an<1>" LOC = "H17"; 
+NET "an<2>" LOC = "C18"; 
+NET "an<3>" LOC = "F15"; 
+
+
+# RS232 connector
+NET "RsRx" LOC = "U6"; # Bank = 2, Pin name = IP, Type = INPUT, Sch name = RS-RX
+NET "RsTx" LOC = "P9"; # Bank = 2, Pin name = IO, Type = I/O, Sch name = RS-TX
+
+#VGA 
+# VGA Connector 
+NET "vga_red<0>"   LOC = "R9"; # Bank = 2, Pin name = IO/D5,               Type = DUAL, Sch name = RED0
+NET "vga_red<1>"   LOC = "T8"; # Bank = 2, Pin name = IO_L10N_2,           Type = I/O,  Sch name = RED1
+NET "vga_red<2>"   LOC = "R8"; # Bank = 2, Pin name = IO_L10P_2,           Type = I/O,  Sch name = RED2
+NET "vga_green<0>" LOC = "N8"; # Bank = 2, Pin name = IO_L09N_2,           Type = I/O,  Sch name = GRN0
+NET "vga_green<1>" LOC = "P8"; # Bank = 2, Pin name = IO_L09P_2,           Type = I/O,  Sch name = GRN1
+NET "vga_green<2>" LOC = "P6"; # Bank = 2, Pin name = IO_L05N_2,           Type = I/O,  Sch name = GRN2
+NET "vga_blue<0>"  LOC = "U5"; # Bank = 2, Pin name = IO/VREF_2,           Type = VREF, Sch name = BLU1
+NET "vga_blue<1>"  LOC = "U4"; # Bank = 2, Pin name = IO_L03P_2/DOUT/BUSY, Type = DUAL, Sch name = BLU2
+
+NET "hsync" LOC = "T4"; # Bank = 2, Pin name = IO_L03N_2/MOSI/CSI_B,  Type = DUAL, Sch name = HSYNC
+NET "vsync" LOC = "U3"; # Bank = 2, Pin name = IO_L01P_2/CSO_B,       Type = DUAL, Sch name = VSYNC
+
+# PS/2 connector
+NET "ps2c" LOC = "R12"; # Bank = 2, Pin name = IO_L20N_2, Type = I/O, Sch name = PS2C
+NET "ps2d" LOC = "P11"; # Bank = 2, Pin name = IO_L18P_2, Type = I/O, Sch name = PS2D

@@ -1,0 +1,164 @@
+Net "CLK" LOC=V10 ;
+## onBoard USB controller
+#Net "EppAstb" LOC = H1 ; 
+#Net "EppDstb" LOC = K4 ; 
+#Net "EppWait" LOC = C2 ; 
+#Net "EppDB<0>" LOC = E1 ;
+#Net "EppDB<1>" LOC = F4 ;
+#Net "EppDB<2>" LOC = F3 ;
+#Net "EppDB<3>" LOC = D2 ;
+#Net "EppDB<4>" LOC = D1 ;
+#Net "EppDB<5>" LOC = H7 ;
+#Net "EppDB<6>" LOC = G6 ;
+#Net "EppDB<7>" LOC = E4 ;
+
+#Net "EppWr" LOC = F5 ; 
+Net "FlashCS" LOC = L17 ; 
+Net "FlashRp" LOC = T4 ; 
+
+Net "MemAdr<1>" LOC = K18  ; 
+Net "MemAdr<2>" LOC = K17  ; 
+Net "MemAdr<3>" LOC = J18  ; 
+Net "MemAdr<4>" LOC = J16  ; 
+Net "MemAdr<5>" LOC = G18  ; 
+Net "MemAdr<6>" LOC = G16  ; 
+Net "MemAdr<7>" LOC = H16  ; 
+Net "MemAdr<8>" LOC = H15  ; 
+Net "MemAdr<9>" LOC = H14  ; 
+Net "MemAdr<10>" LOC = H13 ; 
+Net "MemAdr<11>" LOC = F18 ; 
+Net "MemAdr<12>" LOC = F17 ; 
+Net "MemAdr<13>" LOC = K13 ; 
+Net "MemAdr<14>" LOC = K12 ; 
+Net "MemAdr<15>" LOC = E18 ; 
+Net "MemAdr<16>" LOC = E16 ; 
+Net "MemAdr<17>" LOC = G13 ; 
+Net "MemAdr<18>" LOC = H12 ; 
+Net "MemAdr<19>" LOC = D18 ; 
+Net "MemAdr<20>" LOC = D17 ; 
+Net "MemAdr<21>" LOC = G14 ; 
+Net "MemAdr<22>" LOC = F14 ; 
+Net "MemAdr<23>" LOC = C18 ; 
+Net "MemAdr<24>" LOC = C17 ; 
+Net "MemAdr<25>" LOC = F16 ; 
+Net "MemAdr<26>" LOC = F15 ; 
+
+Net "MemDB<0>" LOC = R13 ; 
+Net "MemDB<1>" LOC = T14 ; 
+Net "MemDB<2>" LOC = V14 ; 
+Net "MemDB<3>" LOC = U5  ; 
+Net "MemDB<4>" LOC = V5  ; 
+Net "MemDB<5>" LOC = R3  ; 
+Net "MemDB<6>"  LOC = T3 ; 
+Net "MemDB<7>"  LOC = R5 ; 
+Net "MemDB<8>"  LOC = N5 ; 
+Net "MemDB<9>"  LOC = P6 ; 
+Net "MemDB<10>"  LOC = P12 ; 
+Net "MemDB<11>"  LOC = U13 ; 
+Net "MemDB<12>"  LOC = V13 ; 
+Net "MemDB<13>"  LOC = U10 ; 
+Net "MemDB<14>"  LOC = R8  ; 
+Net "MemDB<15>"  LOC = T8  ; 
+
+Net "MemOE" LOC = L18 ; 
+Net "MemWR" LOC = M16 ; 
+
+Net "RamAdv" LOC = H18 ; 
+Net "RamWait" LOC = V4 ; 
+Net "RamClk" LOC = R10 ; 
+
+Net "RamCS" LOC = L15 ; 
+Net "RamCre" LOC = M18 ;
+Net "RamUB" LOC = K15  ;
+Net "RamLB" LOC = K16  ;
+
+
+## Leds
+Net "LED<0>" LOC = U16 ; 
+Net "LED<1>" LOC = V16 ; 
+Net "LED<2>" LOC = U15 ; 
+Net "LED<3>" LOC = V15 ; 
+Net "LED<4>" LOC = M11 ; 
+Net "LED<5>" LOC = N11 ; 
+Net "LED<6>" LOC = R11 ; 
+Net "LED<7>" LOC = T11 ; 
+
+## Switches
+Net "RESETn" LOC = T10 ; 
+##Net "sw" LOC = T10 ; 
+#Net "sw<1>" LOC = T9 ; 
+#Net "sw<2>" LOC = V9 ; 
+#Net "sw<3>" LOC = M8 ; 
+#Net "sw<4>" LOC = N8 ; 
+#Net "sw<5>" LOC = U8 ; 
+#Net "sw<6>" LOC = V8 ; 
+#Net "sw<7>" LOC = T5 ; 
+
+
+## Buttons
+
+#Net "btn<0>" LOC = A8 ; 
+#Net "btn<1>" LOC = C4 ; 
+#Net "btn<2>" LOC = C9 ; 
+#Net "btn<3>" LOC = D9 ; 
+#Net "btn<4>" LOC = B8 ;
+
+
+# 7 segment display
+#Net "seg<0>" LOC = T17 ; 
+#Net "seg<1>" LOC = T18 ; 
+#Net "seg<2>" LOC = U17 ; 
+#Net "seg<3>" LOC = U18 ; 
+#Net "seg<4>" LOC = M14 ; 
+#Net "seg<5>" LOC = N14 ; 
+#Net "seg<6>" LOC = L14 ; 
+#Net "dp" LOC = M13  ;
+
+#Net "an<0>" LOC = N16 ; 
+#Net "an<1>" LOC = N15 ; 
+#Net "an<2>" LOC = P18 ; 
+#Net "an<3>" LOC = P17 ; 
+
+
+# Usb-RS232 interface
+#Net "RsRx" LOC = N17 | PULLUP; 
+#Net "RsTx" LOC = N18 ; 
+
+
+## VGA Connector
+#NET "vga_red<0>" LOC = U7 ; 
+#NET "vga_red<1>" LOC = V7 ; 
+#NET "vga_red<2>" LOC = N7 ; 
+#NET "vga_green<0>" LOC = P8 ; 
+#NET "vga_green<1>" LOC = T6 ; 
+#NET "vga_green<2>" LOC = V6 ; 
+#NET "vga_blue<0>" LOC = R7 ; #
+#NET "vga_blue<1>" LOC = T7 ;
+
+#NET "hsync" LOC = N6 ; 
+#N#ET "vsync" LOC = P7 ; 
+
+##Pic USB-HID interface
+#Net "ps2d" LOC = J13 | PULLUP; 
+#Net "ps2c" LOC = L12 | PULLUP; 
+
+
+
+#Net "log<0>" LOC = G11;
+#Net "log<1>" LOC = F10;
+#Net "log<2>" LOC = F11;
+#Net "log<3>" LOC = E11;
+#Net "log<4>" LOC = D12;
+#Net "log<5>" LOC = C12;
+#Net "log<6>" LOC = F12;
+#Net "log<7>" LOC = E12;
+
+
+#Net "log2<0>" LOC = H3 ; 
+#Net "log2<1>" LOC = L7 ;
+#Net "log2<2>" LOC = K6 ;
+#Net "log2<3>" LOC = G3 ;
+#Net "log2<4>" LOC = G1 ;
+#Net "log2<5>" LOC = J7 ;
+#Net "log2<6>" LOC = J6 ;
+#Net "log2<7>" LOC = F2 ;

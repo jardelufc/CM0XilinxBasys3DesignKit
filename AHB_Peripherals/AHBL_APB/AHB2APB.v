@@ -1,0 +1,252 @@
+//////////////////////////////////////////////////////////////////////////////////
+//END USER LICENCE AGREEMENT                                                    //
+//                                                                              //
+//Copyright (c) 2012, ARM All rights reserved.                                  //
+//                                                                              //
+//THIS END USER LICENCE AGREEMENT (“LICENCE”) IS A LEGAL AGREEMENT BETWEEN      //
+//YOU AND ARM LIMITED ("ARM") FOR THE USE OF THE SOFTWARE EXAMPLE ACCOMPANYING  //
+//THIS LICENCE. ARM IS ONLY WILLING TO LICENSE THE SOFTWARE EXAMPLE TO YOU ON   //
+//CONDITION THAT YOU ACCEPT ALL OF THE TERMS IN THIS LICENCE. BY INSTALLING OR  //
+//OTHERWISE USING OR COPYING THE SOFTWARE EXAMPLE YOU INDICATE THAT YOU AGREE   //
+//TO BE BOUND BY ALL OF THE TERMS OF THIS LICENCE. IF YOU DO NOT AGREE TO THE   //
+//TERMS OF THIS LICENCE, ARM IS UNWILLING TO LICENSE THE SOFTWARE EXAMPLE TO    //
+//YOU AND YOU MAY NOT INSTALL, USE OR COPY THE SOFTWARE EXAMPLE.                //
+//                                                                              //
+//ARM hereby grants to you, subject to the terms and conditions of this Licence,//
+//a non-exclusive, worldwide, non-transferable, copyright licence only to       //
+//redistribute and use in source and binary forms, with or without modification,//
+//for academic purposes provided the following conditions are met:              //
+//a) Redistributions of source code must retain the above copyright notice, this//
+//list of conditions and the following disclaimer.                              //
+//b) Redistributions in binary form must reproduce the above copyright notice,  //
+//this list of conditions and the following disclaimer in the documentation     //
+//and/or other materials provided with the distribution.                        //
+//                                                                              //
+//THIS SOFTWARE EXAMPLE IS PROVIDED BY THE COPYRIGHT HOLDER "AS IS" AND ARM     //
+//EXPRESSLY DISCLAIMS ANY AND ALL WARRANTIES, EXPRESS OR IMPLIED, INCLUDING     //
+//WITHOUT LIMITATION WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR //
+//PURPOSE, WITH RESPECT TO THIS SOFTWARE EXAMPLE. IN NO EVENT SHALL ARM BE LIABLE/
+//FOR ANY DIRECT, INDIRECT, INCIDENTAL, PUNITIVE, OR CONSEQUENTIAL DAMAGES OF ANY/
+//KIND WHATSOEVER WITH RESPECT TO THE SOFTWARE EXAMPLE. ARM SHALL NOT BE LIABLE //
+//FOR ANY CLAIMS, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, //
+//TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE    //
+//EXAMPLE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE EXAMPLE. FOR THE AVOIDANCE/
+// OF DOUBT, NO PATENT LICENSES ARE BEING LICENSED UNDER THIS LICENSE AGREEMENT.//
+//////////////////////////////////////////////////////////////////////////////////
+
+
+module AHB2APB(
+// Global signals --------------------------------------------------------------
+  input wire          HCLK,
+  input wire          HRESETn,
+  
+// AHB Slave inputs ------------------------------------------------------------  
+  input wire  [31:0]  HADDR,
+  input wire  [1:0]   HTRANS,
+  input wire          HWRITE,
+  input wire  [31:0]  HWDATA,
+  input wire          HSEL,
+  input wire          HREADY,
+  
+// APB Master inputs -----------------------------------------------------------
+  input wire  [31:0]  PRDATA,
+  input wire          PREADY,
+  
+// AHB Slave outputs -----------------------------------------------------------
+  output wire [31:0]  HRDATA,
+  output reg          HREADYOUT,
+  
+// APB Master outputs ----------------------------------------------------------
+  output wire [31:0]  PWDATA,
+  output reg          PENABLE,
+  output reg  [31:0]  PADDR,
+  output reg          PWRITE,
+  
+  output wire         PCLK,
+  output wire         PRESETn
+);
+  
+//Constants
+
+  `define ST_IDLE 2'b00
+  `define ST_SETUP 2'b01
+  `define ST_ACCESS 2'b11
+
+
+  wire          Transfer;
+  wire          ACRegEn;
+  reg   [31:0]  last_HADDR;
+  reg           last_HWRITE;
+  
+  wire  [31:0]  HADDR_Mux;
+  
+  reg   [1:0]   CurrentState;
+  reg   [1:0]   NextState;
+  
+  reg           HREADY_next;  
+  wire          PWRITE_next;
+  wire          PENABLE_next;
+  wire          APBEn;
+  
+  
+  assign PCLK = HCLK;
+  assign PRESETn = HRESETn;
+  
+  assign Transfer = HSEL & HREADY & HTRANS[1];
+  
+  assign ACRegEn = HSEL & HREADY;
+  
+  //Set register values of AHB signals
+  
+  always @ (posedge HCLK, negedge HRESETn)
+  begin
+    if(!HRESETn)
+      begin
+        last_HADDR <= {32{1'b0}};
+        last_HWRITE <= 1'b0;
+      end
+    
+    else
+      begin
+        if(ACRegEn)
+          begin
+            last_HADDR <= HADDR;
+            last_HWRITE <= HWRITE;
+          end
+      end
+  end
+  
+  
+// Next State Logic
+
+  always @ (CurrentState,PREADY, Transfer)
+  begin
+    case (CurrentState)
+      `ST_IDLE: 
+        begin
+          if(Transfer)
+            NextState = `ST_SETUP;
+          else
+            NextState = `ST_IDLE;
+        end
+      
+      `ST_SETUP:
+        begin
+          NextState = `ST_ACCESS;
+        end
+      
+      `ST_ACCESS:
+        begin
+          if(!PREADY)
+            NextState = `ST_ACCESS;
+          else
+            begin
+              if(Transfer)
+                NextState = `ST_SETUP;
+              else
+                NextState = `ST_IDLE;
+            end
+        end
+      default:
+        NextState = `ST_IDLE;
+    endcase
+  end
+  
+// State Machine
+
+  always @ (posedge HCLK, negedge HRESETn)
+  begin
+    if(!HRESETn)
+      CurrentState <= `ST_IDLE;
+    else
+      CurrentState <= NextState;
+  end
+  
+  
+//HREADYOUT
+
+  always @ (NextState, PREADY)
+  begin
+    case (NextState)
+      `ST_IDLE:
+        HREADY_next = 1'b1;
+      `ST_SETUP:
+        HREADY_next = 1'b0;
+      `ST_ACCESS: 
+        HREADY_next = PREADY;
+      default:
+        HREADY_next = 1'b1;
+    endcase
+  end
+
+  always @(posedge HCLK, negedge HRESETn)
+  begin
+    if(!HRESETn)
+      HREADYOUT <= 1'b1;
+    else
+      HREADYOUT <= HREADY_next;
+  end
+
+  
+// HADDRMux
+  assign HADDR_Mux = ((NextState == `ST_SETUP) ? HADDR :
+                      last_HADDR);
+
+//APBen
+  assign APBEn = ((NextState == `ST_SETUP) ? 1'b1 : 1'b0);
+
+//PADDR
+
+  always @ (posedge HCLK, negedge HRESETn)
+  begin
+    if (!HRESETn)
+      PADDR <= {32{1'b0}};
+    else
+      begin
+        if (APBEn)
+          PADDR <= HADDR_Mux;
+      end
+  end
+
+//PWDATA
+
+  assign PWDATA = HWDATA;
+
+
+//PENABLE
+
+  assign PENABLE_next = ((NextState == `ST_ACCESS) ? 1'b1 : 1'b0);
+  
+  always @ (posedge HCLK, negedge HRESETn)
+  begin
+    if(!HRESETn)
+      PENABLE <= 1'b0;
+    else
+      PENABLE <= PENABLE_next;
+  end
+  
+//PWRITE
+
+  assign PWRITE_next = ((NextState == `ST_SETUP) ? HWRITE : last_HWRITE);
+
+  always @ (posedge HCLK, negedge HRESETn)
+  begin
+    if(!HRESETn)
+      PWRITE <= 1'b0;
+    else
+      begin
+        if (APBEn)
+          PWRITE <= PWRITE_next;
+      end
+  end
+
+
+//HRDATA
+  assign HRDATA = PRDATA;
+
+
+
+endmodule
+  
+  
+  
