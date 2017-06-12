@@ -31,7 +31,7 @@ This porting has been tested and used under RWindoW$
 
 
 
-0X00000E01-0x00001000 (Heap mem)
+0x00000E01-0x00001000 (Heap mem)
 
 0x00000C01-0x00000E00 (128x4 task stacks)
 
